@@ -1,4 +1,4 @@
-# S1404 Trial Paper — Plain-Language Summary
+# S1404 Trial Paper - Plain-Language Summary
 
 ## What this paper is
 
@@ -43,17 +43,17 @@ doctors record about a melanoma patient's condition at enrollment.
 
 ## Keywords
 
-- **Adjuvant therapy** — treatment given after the main tumor is removed, to
+- **Adjuvant therapy** - treatment given after the main tumor is removed, to
   try to prevent the cancer from coming back.
-- **Relapse / recurrence** — the cancer returning after treatment.
-- **Overall survival (OS)** — how long a patient lived, from any cause of
+- **Relapse / recurrence** - the cancer returning after treatment.
+- **Overall survival (OS)** - how long a patient lived, from any cause of
   death.
-- **Recurrence-free survival (RFS)** — how long a patient went without the
+- **Recurrence-free survival (RFS)** - how long a patient went without the
   cancer returning (or without dying).
-- **Censored** — a patient's outcome is unknown past their last check-in
+- **Censored** - a patient's outcome is unknown past their last check-in
   because the event (relapse/death) hadn't happened yet.
-- **Randomized trial** — patients are randomly assigned to one treatment
+- **Randomized trial** - patients are randomly assigned to one treatment
   group or another, to make the groups as comparable as possible.
-- **Performance status (PS / Zubrod / ECOG)** — a 0–4 scale describing how
+- **Performance status (PS / Zubrod / ECOG)** - a 0-4 scale describing how
   functionally able a patient is (0 = fully active, 4 = completely
   disabled).
