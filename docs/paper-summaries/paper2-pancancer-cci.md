@@ -1,4 +1,4 @@
-# Paper 2 — Comorbidity Burden and Survival, Pan-Cancer
+# Paper 2 - Comorbidity Burden and Survival, Pan-Cancer
 
 ## What this paper is
 
@@ -38,17 +38,17 @@ mentor.
 
 ## Keywords
 
-- **Charlson Comorbidity Index (CCI)** — a scoring system (created in 1987)
+- **Charlson Comorbidity Index (CCI)** - a scoring system (created in 1987)
   where 17 different chronic conditions are each assigned a point value
   based on how strongly they predict mortality; the points are added up
   into a total score representing overall comorbidity burden.
-- **Multivariable analysis** — a statistical model that looks at several
+- **Multivariable analysis** - a statistical model that looks at several
   variables at once, so you can see whether one variable (like comorbidity)
   still matters after accounting for others (like age or performance
   status).
-- **Hazard ratio (HR)** — a multiplier on risk used in survival analysis.
-- **Confidence interval (CI)** — a range around a result showing how
+- **Hazard ratio (HR)** - a multiplier on risk used in survival analysis.
+- **Confidence interval (CI)** - a range around a result showing how
   precise the estimate is; a 95% CI that doesn't cross 1 for a hazard ratio
   generally means the result is considered statistically significant.
-- **ECOG performance status** — same concept as the Zubrod scale used in
-  S1404, a 0–4 functional ability scale.
+- **ECOG performance status** - same concept as the Zubrod scale used in
+  S1404, a 0-4 functional ability scale.
