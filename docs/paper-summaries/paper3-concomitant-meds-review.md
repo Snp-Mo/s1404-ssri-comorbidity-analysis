@@ -1,4 +1,4 @@
-# Paper 3 — Concomitant Medications and Immunotherapy Outcomes (Review)
+# Paper 3 - Concomitant Medications and Immunotherapy Outcomes (Review)
 
 ## What this paper is
 
@@ -39,15 +39,15 @@ response.
 
 ## Keywords
 
-- **Concomitant medication** — any drug a patient is taking alongside their
+- **Concomitant medication** - any drug a patient is taking alongside their
   main cancer treatment.
-- **Polypharmacy** — being on multiple medications at once (commonly
+- **Polypharmacy** - being on multiple medications at once (commonly
   defined as five or more).
-- **Neuro-immune axis** — the interaction between the nervous system and
+- **Neuro-immune axis** - the interaction between the nervous system and
   the immune system; this is the category SSRIs fall into in this paper's
   framework.
-- **Immune checkpoint inhibitor (ICI)** — the broader drug class that
+- **Immune checkpoint inhibitor (ICI)** - the broader drug class that
   pembrolizumab (used in S1404) belongs to; these drugs work by releasing
   "brakes" on the immune system so it can attack tumors more effectively.
-- **Immune-related adverse event (irAE)** — a side effect caused by the
+- **Immune-related adverse event (irAE)** - a side effect caused by the
   immune system being overactive as a result of immunotherapy treatment.
