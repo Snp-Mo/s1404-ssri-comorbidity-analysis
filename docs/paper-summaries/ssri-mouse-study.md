@@ -1,4 +1,4 @@
-# SSRI / SERT Mouse Study — Plain-Language Summary
+# SSRI / SERT Mouse Study - Plain-Language Summary
 
 ## What this paper is
 
@@ -29,13 +29,13 @@ not a "how do I analyze my data" paper.
 
 ## Keywords
 
-- **SSRI (selective serotonin reuptake inhibitor)** — a common class of
+- **SSRI (selective serotonin reuptake inhibitor)** - a common class of
   antidepressant medication.
-- **SERT (serotonin transporter)** — the protein SSRIs block; normally
+- **SERT (serotonin transporter)** - the protein SSRIs block; normally
   found in the brain, but also on certain immune cells.
-- **CD8 T cells** — a type of immune cell responsible for directly killing
+- **CD8 T cells** - a type of immune cell responsible for directly killing
   infected or cancerous cells.
-- **Antitumor immunity** — the immune system's ability to recognize and
+- **Antitumor immunity** - the immune system's ability to recognize and
   attack tumor cells.
-- **Gene expression** — how "active" a particular gene is in a cell or
+- **Gene expression** - how "active" a particular gene is in a cell or
   tissue; used here to compare SERT levels between tumor samples.
