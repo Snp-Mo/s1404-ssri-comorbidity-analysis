@@ -1,4 +1,4 @@
-# Data Dictionary — Naming Conventions Only
+# Data Dictionary - Naming Conventions Only
 
 This file documents column names and their meanings only. It contains
 no actual data, no row values, and no patient information of any kind. Real
@@ -12,7 +12,7 @@ datasets are never stored in this repo.
 | ARM | Randomized treatment arm |
 | AGE | Age at enrollment |
 | SEX | Sex |
-| PS | Performance status at enrollment (Zubrod/ECOG scale, 0–4) |
+| PS | Performance status at enrollment (Zubrod/ECOG scale, 0-4) |
 | STAGE | Disease stage at enrollment |
 | PDL1 | PD-L1 expression status |
 | BRAF | BRAF mutation present or not |
