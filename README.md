@@ -1,8 +1,8 @@
-# S1404 — SSRI Use, Comorbidity Burden, and Survival
+# S1404 - SSRI Use, Comorbidity Burden, and Survival
 
 Private working repo for an undergraduate research project at Fred Hutch Cancer
 Center (SeattleStatGROWS internship). This repo holds **planning docs, paper
-summaries, and a task board only** — no patient data, no CSVs, no PATNO, ever.
+summaries, and a task board only** - no patient data, no CSVs, no PATNO, ever.
 All analysis and real datasets live locally on the researcher's own machine.
 
 ## Project purpose
