@@ -12,7 +12,7 @@
 
 ## Key findings / output numbers
 
-- Of the 17 MHTERM entries missing MHONGO, only 2 (osteoarthritis, PATNO 701092; gout, PATNO 701673) are diagnoses that clearly match one of the 4 comorbidity categories under the conservative classification rule. Both are RMD.
+- Of the 17 MHTERM entries missing MHONGO, only 2 (osteoarthritis; gout - patient identifiers withheld per data privacy protocol) are diagnoses that clearly match one of the 4 comorbidity categories under the conservative classification rule. Both are RMD.
 - The other 15 are either unrelated to the 4 categories entirely, or fall into the pending risk-factor/vague-symptom question sent to Megan.
 
 ## Roadblocks
@@ -22,3 +22,6 @@ None blocking. One open question sent to mentor (see above), with a working assu
 ## What's next
 
 Issue #9 (step-07): classify all 3898 cleaned MHTERM values into the 4 categories plus "not a health condition," using the same conservative default, with the risk-factor/vague cluster flagged separately as pending mentor input rather than fully decided.
+
+
+_[Edited 2026-07-08: removed 2 patient ID numbers that had been included above in error - per project privacy protocol, PATNO must never appear anywhere an AI tool can access it. No other change to the substance of this log.]_
