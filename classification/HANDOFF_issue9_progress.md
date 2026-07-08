@@ -1,10 +1,10 @@
 # Issue #9 Progress Handoff - AI-Assisted Classification of MHTERM Entries
 
-Written mid-session on July 7, 2026 to hand off to a fresh chat (previous chat got too long / token-heavy).
+Written mid-session on July 7, 2026 to hand off to a fresh chat (previous chat got too long / token-heavy). Updated same day after completing one additional batch of 200 terms.
 
 ## Where things stand
 
-Out of 3,898 cleaned unique MHTERM values (from issue #5's output, file mhterm_unique_clean.csv already in this repo), **1,621 terms have been manually read and classified** using real clinical judgment (not just keyword matching). The full list of decisions is in `classification/compact_overrides.txt` in this repo, one term per line, pipe-delimited, in the format:
+Out of 3,898 cleaned unique MHTERM values (from issue #5's output, file mhterm_unique_clean.csv already in this repo), **1,821 terms have been manually read and classified** using real clinical judgment (not just keyword matching). The full list of decisions is in `classification/compact_overrides.txt` in this repo, one term per line, pipe-delimited, in the format:
 
 ```
 TERM TEXT|CODE
@@ -14,11 +14,11 @@ Where CODE is one of: C=CVD, P=COPD, D=T2D, R=RMD, N=NOT_A_HEALTH_CONDITION, O=O
 
 Of the W (NEEDS_REVIEW) entries in that file, all of them are DECIDED and just waiting on Megan's answer to the July 7 mentor question (questions-for-mentor/2026-07-07.md) - they are hypertension, cholesterol/lipid/triglyceride, obesity/metabolic syndrome, and vague-MSK-pain-or-symptom-without-diagnosis terms (arthralgia, back pain, joint pain, myalgia, decreased range of motion, etc). Nothing more to decide on these until she answers - do not re-review them.
 
-**About 1,398 of the original 3,898 terms remain genuinely unread** (not in compact_overrides.txt, and not resolved by the early pattern-matching pass either). To find exactly which ones, regenerate as described below.
+**About 2,077 of the original 3,898 terms remain genuinely unread** (not in compact_overrides.txt, and not resolved by the early pattern-matching pass either). To find exactly which ones, regenerate as described below.
 
 ## How to regenerate the current full state and find what's left
 
-1. Load `mhterm_unique_clean.csv` from this repo (3,898 rows, column MHTERM_clean).
+1. Load `mhterm_unique_clean.csv` from this repo (3,898 rows, column MHTERM_clean). Note: this CSV is not currently checked into the repo - it lives in the project files; if starting a fresh session without project file access, ask the user for it.
 2. Load `classification/compact_overrides.txt` and parse into a dict of term -> category (expand the letter codes above).
 3. Any term in mhterm_unique_clean.csv NOT present as a key in that dict is still unclassified and needs the same manual reading process.
 
@@ -30,11 +30,11 @@ Of the W (NEEDS_REVIEW) entries in that file, all of them are DECIDED and just w
 
 3. **MSK pain/symptom-without-diagnosis also goes to NEEDS_REVIEW**: arthralgia, back pain, joint pain, neck pain, shoulder pain, hip pain, knee pain, decreased range of motion, muscle aches/myalgia - i.e. any joint or muscle-region symptom that doesn't name an actual diagnosed condition. This was extended from the original "chronic ankle pain" example in the mentor question, on the reasoning that it's the same category of problem (symptom vs. diagnosis) and RMD is exactly the category this affects.
 
-4. **Diagnoses that ARE counted as RMD**: osteoarthritis, gout, rheumatoid arthritis, herniated/bulged/compressed discs, degenerative disc/joint disease, spinal stenosis, radiculopathy/radiculitis/sciatica (nerve compression from disc disease), meniscus tears, tendinosis/tendinopathy (chronic, e.g. Achilles tendinosis, tennis/golfer's elbow), fibromyalgia, congenital joint dysplasia, arthropathy/arthrosis.
+4. **Diagnoses that ARE counted as RMD**: osteoarthritis, arthritis (plain, unqualified), gout, rheumatoid arthritis, herniated/bulged/compressed discs, degenerative disc/joint disease, spinal stenosis, radiculopathy/radiculitis/sciatica (nerve compression from disc disease), meniscus tears, tendinosis/tendinopathy (chronic, e.g. Achilles tendinosis, tennis/golfer's elbow), fibromyalgia, congenital joint dysplasia, arthropathy/arthrosis, ankylosing spondylitis, medial/lateral epicondylitis.
 
 5. **Diagnoses NOT counted as RMD (localized/mechanical, kept as OTHER_CONDITION_NOT_TRACKED)**: bursitis, adhesive capsulitis (frozen shoulder), carpal tunnel syndrome, plantar fasciitis, impingement syndrome, flat feet, acute joint injuries/sprains/dislocations. Reasoning: these are localized mechanical/overuse conditions rather than the systemic rheumatic/degenerative disease Paper 1's RMD category is meant to capture. This is a judgment call, not confirmed by Megan - worth flagging if it matters later.
 
-6. **CVD**: includes standard cardiac/vascular diagnoses (MI, CAD, arrhythmias including AFib/bradycardia/PVCs/heart blocks, CHF, valve disease, stroke/CVA/TIA, DVT/PE/blood clots, atherosclerosis, congenital heart defects, structural findings like LV hypertrophy or atrial enlargement). Does NOT include: hypertension (pending), murmurs (usually benign), edema alone (too nonspecific), varicose veins (kept as OTHER), venous/vascular anomalies described as congenital/developmental and benign.
+6. **CVD**: includes standard cardiac/vascular diagnoses (MI, CAD, arrhythmias including AFib/bradycardia/PVCs/heart blocks, CHF, valve disease, stroke/CVA/TIA, DVT/PE/blood clots, atherosclerosis, congenital heart defects, structural findings like LV hypertrophy or atrial enlargement, aneurysms - aortic and other arterial, angina). Does NOT include: hypertension (pending), murmurs (usually benign), edema alone (too nonspecific), varicose veins (kept as OTHER), venous/vascular anomalies described as congenital/developmental and benign.
 
 7. **T2D**: diabetes mentioned without Type 1/gestational/juvenile qualifier defaults to T2D (reasonable given adult melanoma trial population). Diabetes complications (diabetic neuropathy, diabetic retinopathy, diabetic dyslipidemia) count as T2D since they imply the underlying diagnosis. Type 1 diabetes explicitly excluded. Prediabetes-type language (impaired fasting glucose, glucose intolerance, elevated/high glucose alone) does NOT count - these are lab findings/risk states, not a diabetes diagnosis, UNLESS explicitly qualified as "DM Type II" or similar.
 
@@ -42,8 +42,12 @@ Of the W (NEEDS_REVIEW) entries in that file, all of them are DECIDED and just w
 
 9. **Lab values, vital signs, and isolated findings** (ALT/AST, alkaline phosphatase, electrolytes, blood counts, edema, murmurs, EF percentages, etc.) are OTHER_CONDITION_NOT_TRACKED, not diagnoses.
 
-10. **Condition + procedure combos** (e.g. "cholecystectomy due to cholelithiasis," "fibroids and subsequent hysterectomy") get NOT_A_HEALTH_CONDITION since the procedure is the dominant descriptor.
+10. **Condition + procedure combos** (e.g. "cholecystectomy due to cholelithiasis," "fibroids and subsequent hysterectomy") get NOT_A_HEALTH_CONDITION since the procedure is the dominant descriptor. This also applies to terms ending in a bare procedure noun like "X EXCISION" or "X SURGERY" (e.g. "basal cell carcinoma excision," "ACL repair") - these get NOT_A_HEALTH_CONDITION, whereas a diagnosis with a parenthetical surgical note like "(excised)" or "S/P [procedure]" keeps the diagnosis's own code since the diagnosis is still the dominant descriptor there.
+
+11. **Allergies and vaccine/drug reactions** (e.g. "allergic to penicillin," "allergy to IV contrast," "allergic rhinitis due to pollen" when phrased as a drug/substance allergy) are NOT_A_HEALTH_CONDITION, consistent with the existing pattern for allergy entries already in the overrides file. Note: allergic rhinitis / hay fever / seasonal allergies as a standing diagnosis are also coded N in this dataset (matches prior precedent already in the file), distinct from OTHER_CONDITION_NOT_TRACKED conditions like atopic dermatitis or asthma.
 
 ## What to tell a fresh Claude chat to resume
 
 Point it at this file (classification/HANDOFF_issue9_progress.md) and classification/compact_overrides.txt in the repo. Ask it to: regenerate the not-yet-classified list using the method above, then continue the same batch-by-batch manual reading process (roughly 200 terms per batch), applying the rules above, and appending new decisions to compact_overrides.txt (same pipe-delimited format, letter codes). Once all terms are read, the pending-mentor items just need Megan's answer before issue #9 can close and hand off to issue #7 (wide-format matrix) and issue #8 (spot-check).
+
+Note on committing to GitHub: when updating compact_overrides.txt, build the full merged file content as a Python string inside the remote workbench (fetch current file via GITHUB_GET_REPOSITORY_CONTENT, append new lines as a string literal, then commit via GITHUB_COMMIT_MULTIPLE_FILES using run_composio_tool) rather than pasting a large base64 blob into a tool call directly - large base64 payloads (over roughly 40-50KB) risk silent truncation when passed as literal tool-call arguments.
