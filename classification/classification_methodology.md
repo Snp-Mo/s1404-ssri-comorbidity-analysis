@@ -1,4 +1,6 @@
-# Issue #9 Progress Handoff - AI-Assisted Classification of MHTERM Entries
+# MHTERM Classification Methodology
+
+(Originally written as the issue #9 progress handoff; kept and renamed as the permanent methodology reference now that issue #9 is closed - the classification rules and W-cluster resolution documented here are needed for issue #8's spot-check and for the eventual methods write-up.)
 
 ## STATUS: COMPLETE, INCLUDING ALL W-TAGGED ENTRIES (Updated July 8, 2026)
 
