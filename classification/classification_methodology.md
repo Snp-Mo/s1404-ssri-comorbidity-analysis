@@ -14,13 +14,15 @@ Where CODE is one of: C=CVD, P=COPD, D=T2D, R=RMD, N=NOT_A_HEALTH_CONDITION, O=O
 
 ## Final tally
 
-- O (other condition, not tracked): 2,164
-- N (not a health condition - procedures, allergies, lab values, injuries, family history): 1,373
+- O (other condition, not tracked): 2,165
+- N (not a health condition - procedures, allergies, lab values, injuries, family history): 1,375
 - W (needs mentor review): 0
 - C (CVD): 182
-- R (RMD): 134
+- R (RMD): 131
 - D (T2D): 41
 - P (COPD): 6
+
+(Updated July 14, 2026 after issue #8 spot-check corrections - see addendum below. R went from 134 to 131, N from 1,373 to 1,375, O from 2,164 to 2,165.)
 
 (As of July 8, 2026 - the 281 W entries have all been resolved, see new section below. Tally updated accordingly.)
 
@@ -87,3 +89,16 @@ A small number of source terms contain a mangled Unicode replacement character (
 - When updating compact_overrides.txt, build the full merged file content as a Python string inside the remote workbench (fetch current file via GITHUB_GET_REPOSITORY_CONTENT, append new lines as a string literal, then commit via GITHUB_COMMIT_MULTIPLE_FILES using run_composio_tool) rather than pasting a large base64 blob into a tool call directly - large base64 payloads (over roughly 40-50KB) risk silent truncation when passed as literal tool-call arguments.
 - raw.githubusercontent.com is CDN-cached and can lag behind the actual repo state for a minute or two after a commit - verify commits by re-fetching via GITHUB_GET_REPOSITORY_CONTENT (the live API) first, and only fall back to raw.githubusercontent.com (with a short delay) for local bash-side verification.
 - GITHUB_COMMIT_MULTIPLE_FILES takes a `message` field, not `commit_message`.
+
+
+## Addendum: issue #8 spot-check corrections (July 14, 2026)
+
+A 163-term stratified spot-check (2 passes, seeds 42 and 4207, about 4.2% of all classified terms, weighted toward the judgment-call rules above) found 159 of 163 terms correctly coded. Three corrections were made for internal consistency:
+
+1. **MENISCUS TEAR**: R -> N. This term has no chronic/degenerative qualifier, so per rule 5's framing (unqualified meniscus tears grouped with ACL tears as acute injury) it should not count as RMD. It was inconsistent with the already-correct N coding of "TORN MENISCUS" and "RIGHT KNEE MEDIAL MENISCUS TEAR," two other unqualified meniscus-tear terms.
+2. **LEFT KNEE MENISCAL TEAR**: R -> N. Same reasoning as above - no chronic qualifier, should match the other unqualified meniscus-tear terms.
+3. **INFRASPINATOUS TENDON TEAR**: R -> O. The infraspinatus is one of the four rotator cuff muscles, so this term describes the same injury type as "ROTATOR CUFF TEAR" (already coded O). It was inconsistent to code the two differently.
+
+**Known remaining inconsistency, not corrected (flagged for awareness only):** rule 5 above states that rotator cuff tears/tendonitis should be coded NOT_A_HEALTH_CONDITION (N), but in practice "ROTATOR CUFF TEAR" and "ROTATOR CUFF TENDONITIS" are both coded OTHER_CONDITION_NOT_TRACKED (O), consistent with the correction made to INFRASPINATOUS TENDON TEAR above. The written rule and the applied codes disagree here; O was kept as the applied standard since it preserves the condition as a tracked "real but not one of the 4 categories" entry rather than discarding it, matching how obesity was handled. The rule text should eventually be edited to say O instead of N for this specific case, but no term codes need to change.
+
+**Downstream impact**: these 3 corrections change `classification/compact_overrides.txt`. The wide-format comorbidity matrix in `s1404_LOCAL_PRIVATE` (issue #7's output, `comorbidity_matrix_v1.csv` / `comorbidity_matrix_v0.csv`) was built before this correction and is now stale - it needs to be rebuilt locally by re-running `04_build_wide_comorbidity_matrix.R` against the corrected `compact_overrides.txt` before issue #11's join uses it.
